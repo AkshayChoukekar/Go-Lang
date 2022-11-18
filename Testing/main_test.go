@@ -6,11 +6,7 @@ import (
 )
 
 func TestSayHello(t *testing.T) {
-	want := 124
-	got := SayHello("akshay")
-
-	if want != got {
+	if SayHello("Akshay") != "hello mahi" {
 		t.Errorf("got %q want %q", got, want)
 	}
-
 }

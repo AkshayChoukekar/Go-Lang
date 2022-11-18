@@ -1,0 +1,10 @@
+package main
+
+import "testing"
+
+func TestCalculateSqaure(t *testing.T) {
+	if CalculateSqaure(2) != 4 {
+		t.Errorf("Square calculations failed")
+	}
+
+}
