@@ -1,17 +1,42 @@
 package main
 
-import "fmt"
+import (
+	"encoding/json"
+	"io/ioutil"
+	"net/http"
+)
+
+type Response struct {
+	Posts    []Post
+	Comments []Comment
+	Profile  Profile
+}
+type Post struct {
+	Id    int
+	Title string
+}
+
+type Comment struct {
+	Id     int
+	Body   string
+	PostId int
+}
+
+type Profile struct {
+	Name string
+}
 
 func main() {
-	var param1, param2, area float64
-	var shape string
-	fmt.Println("Please enter shape name")
-	fmt.Scan(&shape)
-	fmt.Println("Please enter value of first side")
-	fmt.Scan(&param1)
-	fmt.Println("Please enter value of second side")
-	fmt.Scan(&param2)
-	calculateArea(shape,param1,param2)
+	// var param1, param2, area float64
+	// var shape string
+	// fmt.Println("Please enter shape name")
+	// fmt.Scan(&shape)
+	// fmt.Println("Please enter value of first side")
+	// fmt.Scan(&param1)
+	// fmt.Println("Please enter value of second side")
+	// fmt.Scan(&param2)
+	// calculateArea(shape,param1,param2)
+	getData()
 }
 
 /*
@@ -119,19 +144,48 @@ func findDuplicates(s string) {
 
 }*/
 
-func calculateArea(shape string, param1 float64, param2 float64) {
-switch shape{
-	case "Circle":
-		area = 3.1415 * param1*param1
-		
-	case "Rectangle":
-		area = param1*param2
-		
-	case "square":
-		area = param1*param1
-		
-	case "Triangle":
-		area = 0.5 * param1 * param2		
-}
-fmt.println(area)
+// func calculateArea(shape string, param1 float64, param2 float64) {
+// switch shape{
+// 	case "Circle":
+// 		area = 3.1415 * param1*param1
+
+// 	case "Rectangle":
+// 		area = param1*param2
+
+// 	case "square":
+// 		area = param1*param1
+
+// 	case "Triangle":
+// 		area = 0.5 * param1 * param2
+// }
+// fmt.println(area)
+// }
+
+func getData() {
+
+	//var partialResponse []byte
+	resp, err := http.Get("https://my-json-server.typicode.com/typicode/demo/db")
+	if err != nil {
+		print(err)
+	}
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		print(err)
+	}
+	//print whole object
+	//print(string(body))
+
+	// print single object
+	var response Response
+	json.Unmarshal(body, &response)
+	for _, p := range response.Posts {
+		println("id:", p.Id, ", title: ", p.Title)
+	}
+	println("=======")
+	for _, c := range response.Comments {
+		println("id:", c.Id, ", body: ", c.Body, ", postId: ", c.PostId)
+	}
+	println("=======")
+	println("name:", response.Profile.Name)
+
 }

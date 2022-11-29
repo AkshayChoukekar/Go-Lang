@@ -1,0 +1,1 @@
+to run multiple test cases for one function we use t.run
