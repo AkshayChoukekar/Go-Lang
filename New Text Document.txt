@@ -1,2 +1,0 @@
-soql query with date range and repo as params 
-to find the count of deployments per quarter and per microservices
