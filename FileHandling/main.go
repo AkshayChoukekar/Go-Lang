@@ -58,12 +58,12 @@ func writeToFile(filePath string) (string, string) {
 	return string(fileContents1), string(fileContents2)
 }
 
+// Delete Existing File
 func deleteFile(filePath string) {
-	result := os.RemoveAll(filePath)
-	println(result)
+	os.Remove(filePath)
 }
 
 func main() {
 	//println(readFile("C:\\Users\\achoukek\\Desktop\\Testing.txt"))
-	deleteFile("C:\\Users\\achoukek\\Desktop\\NewFile.txt")
+	deleteFile("C:\\Users\\SRS\\Desktop\\NewFile.txt")
 }
