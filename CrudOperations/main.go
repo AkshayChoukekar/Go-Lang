@@ -30,14 +30,14 @@ type Profile struct {
 }
 
 func main() {
-	getData()
-	postData()
-	putData()
-	deleteData()
+	println(GetData())
+	println(PostData())
+	println(PutData())
+	println(DeleteData())
 }
 
 // Create Operation : Post Request
-func postData() {
+func PostData() string {
 	postBody, _ := json.Marshal(map[string]string{
 		"name":  "amar",
 		"email": "amar123@abc.com",
@@ -48,15 +48,11 @@ func postData() {
 	if err != nil {
 		println(err)
 	}
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		println(err)
-	}
-	println(string(body))
+	return resp.Status
 }
 
 // Read Operation : Get Request
-func getData() {
+func GetData() string {
 	resp, err := http.Get("https://my-json-server.typicode.com/typicode/demo/db")
 	if err != nil {
 		print(err)
@@ -88,10 +84,12 @@ func getData() {
 
 	//Print Profile Object
 	println("name:", response.Profile.Name)
+
+	return string(resp.Status)
 }
 
 // Update Operation : Put Request
-func putData() {
+func PutData() string {
 	putbody, err := json.Marshal(map[string]string{
 		"name":  "1mar",
 		"email": "amar123@abcd.com",
@@ -111,11 +109,11 @@ func putData() {
 	}
 	defer resp.Body.Close()
 
-	println(string(resp.Status))
+	return string(resp.Status)
 }
 
 // Delete Operation : Delete Request
-func deleteData() {
+func DeleteData() string {
 	deleteBody, err := json.Marshal(map[string]string{
 		"name":  "amar",
 		"email": "amar123@abcd.com",
@@ -135,11 +133,6 @@ func deleteData() {
 		println(err)
 	}
 	defer resp.Body.Close()
-	respBody, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		println(err)
-	}
-	println(resp.Header)
-	println(string(resp.Status))
-	println(string(respBody))
+
+	return string(resp.Status)
 }
