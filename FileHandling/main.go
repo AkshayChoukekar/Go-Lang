@@ -5,27 +5,28 @@ import (
 )
 
 // create file
-func createFile(filePath string) {
+func CreateFile(filePath string) string {
 	newFilePath := filePath + "NewFile.txt"
 	_, err := os.Create(newFilePath)
 	if err != nil {
 		println(err)
 	}
-	file, err := os.OpenFile(filePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		println(err)
-	}
+	return "file created successfully"
+	// file, err := os.OpenFile(filePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	// if err != nil {
+	// 	println(err)
+	// }
+	// fileData, err := os.ReadFile(filePath + "NewFile.txt")
+	// if err != nil {
+	// 	println(err)
+	// }
+	// println(string(fileData))
+	// defer file.Close()
 
-	fileData, err := os.ReadFile(filePath + "NewFile.txt")
-	if err != nil {
-		println(err)
-	}
-	println(string(fileData))
-	defer file.Close()
 }
 
 // Read from file
-func readFile(filePath string) string {
+func ReadFile(filePath string) string {
 	data, err := os.ReadFile(filePath)
 	if err != nil {
 		println(err)
@@ -34,7 +35,7 @@ func readFile(filePath string) string {
 }
 
 // Write to file
-func writeToFile(filePath string) (string, string) {
+func WriteToFile(filePath string) (string, string) {
 	file, err := os.OpenFile(filePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		println(err)
@@ -64,6 +65,6 @@ func deleteFile(filePath string) {
 }
 
 func main() {
-	//println(readFile("C:\\Users\\achoukek\\Desktop\\Testing.txt"))
-	deleteFile("C:\\Users\\SRS\\Desktop\\NewFile.txt")
+	println(ReadFile("C:\\Users\\achoukek\\Desktop\\NewText.txt"))
+	//deleteFile("C:\\Users\\SRS\\Desktop\\NewFile.txt")
 }

@@ -12,6 +12,5 @@ func getSportsFactory(brand string) (iSportsFactory, error) {
 	if brand == "nike" {
 		return &nike{}, nil
 	}
-
 	return nil, nil
 }

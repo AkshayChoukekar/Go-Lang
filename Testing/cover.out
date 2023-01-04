@@ -1,0 +1,4 @@
+mode: set
+golanag/testing/main.go:3.35,5.2 1 1
+golanag/testing/main.go:7.33,9.2 1 1
+golanag/testing/main.go:11.13,15.2 2 0

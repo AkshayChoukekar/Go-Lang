@@ -17,7 +17,9 @@ func main() {
 	// fmt.Scan(&param2)
 	// calculateArea(shape,param1,param2)
 	//getData()
-	println(getResult(1, 2, "add"))
+	// for i, emp := range Employees {
+	// 	println(i, &emp.ID)
+	// }
 }
 
 //math operation
