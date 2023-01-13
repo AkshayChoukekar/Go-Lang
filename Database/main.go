@@ -24,7 +24,7 @@ func main() {
 		Passwd: "Asdf@12345",
 		Net:    "tcp",
 		Addr:   "127.0.0.1:3306",
-		DBName: "sys",
+		DBName: "test_project_go_lang",
 	}
 	var err error
 	db, err := sql.Open("mysql", cfg.FormatDSN())
